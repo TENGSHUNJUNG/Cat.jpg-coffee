@@ -1,0 +1,980 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>貓圖珈琲 Cat.jpg</title>
+    <link rel="icon" href="favicon.ico" type="image/x-icon" />
+    <link href="css/reset.css" rel="stylesheet" type="text/css">
+    <link href="css/3d.css" rel="stylesheet" type="text/css">
+    <link href="css/new.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css">
+    <link href="./open-iconic/font/css/open-iconic.css" rel="stylesheet">
+    <link href="css/lightbox.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+    <link rel="stylesheet" href="css/timelify.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+</head>
+<style>
+* {
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    background: url(./images/bg.jpg) repeat 0 0;
+    font-family: "微軟正黑體", "新細明體", Arial;
+}
+
+.transition {
+    transition: all .5s;
+}
+
+.header {
+    width: 100%;
+    height: 120px;
+    background-color: #EAE4DB;
+    position: fixed;
+    margin-top: -250px;
+    z-index: 10;
+}
+
+.wrapper {
+    max-width: 1280px;
+    margin: 0 auto;
+    margin-top: 250px;
+}
+
+.slider_box {
+    position: relative;
+    width: 1250px;
+    height: 500px;
+    overflow: hidden;
+    margin: 0 auto;
+    top: 50px;
+    border-radius: 5px;
+    box-shadow: 7px 7px 7px #000;
+}
+
+ul.slides li img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+ul.slides {
+    display: flex;
+    transition: all .5s;
+    left: 0;
+    position: absolute;
+}
+
+ul.slides li {
+    width: 1250px;
+    height: 500px;
+    overflow: hidden;
+}
+
+.page {
+    display: flex;
+    bottom: 5px;
+    width: 100%;
+    justify-content: center;
+    position: absolute;
+}
+
+.page li {
+    border: 1px solid #fff;
+    border-radius: 50%;
+    width: 15px;
+    height: 15px;
+    margin: 0 10px;
+    box-shadow: 2px 2px 5px;
+}
+
+.page li:hover {
+    cursor: pointer;
+}
+
+.page li:active,
+.page li.active {
+    background: #f7efda;
+}
+
+.slider_box .dir_wrap {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 60px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.dir_left {
+    left: 0;
+}
+
+.dir_right {
+    right: 0;
+}
+
+.oi {
+    opacity: .5;
+    color: #fff;
+    font-size: 25px;
+    text-shadow: 5px 5px 5px #000;
+}
+
+.dir_wrap:hover .oi {
+    opacity: 1;
+}
+
+.header_box {
+    max-width: 1280px;
+    max-height: 300px;
+    margin: 0 auto;
+    position: relative;
+    top: 10px;
+}
+
+.header_box>img {
+    height: 100px;
+    position: absolute;
+    left: 50%;
+    margin: 0 -125px;
+}
+
+.logo_box {
+    width: 170px;
+    height: 170px;
+}
+
+.logo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    position: absolute;
+    backface-visibility: hidden;
+}
+
+.logo {
+    width: 100px;
+    height: 100px;
+    display: flex;
+    justify-content: flex-start;
+    cursor: pointer;
+    position: relative;
+    transform-style: preserve-3d;
+}
+
+.logo_box:hover .logo {
+    transform: rotateY(180deg);
+}
+
+.back {
+    transform: rotateY(180deg);
+}
+
+.menu_ul {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: -95px;
+}
+
+.menu_ul li {
+    margin: 5px 10px 5px 10px;
+    z-index: 20;
+}
+
+.menu_ul li a {
+    text-decoration: none;
+    color: #085D35;
+    font-size: 18px;
+    font-weight: bold;
+    z-index: 20;
+    padding: 10px;
+}
+
+.menu_page {
+    display: none;
+    margin-top: -20px;
+    max-width: 100%;
+    text-align: center;
+    background-color: #EAE4DB;
+    z-index: 5;
+}
+
+.menu_page li {
+    padding-bottom: 10px;
+}
+
+.menu_page li a {
+    color: #000;
+    text-decoration: none;
+}
+
+.drink,
+.food,
+.about,
+.cake {
+    max-width: 1280px;
+    margin-top: 210px;
+}
+
+.about {
+    margin-top: 350px;
+}
+
+.abouttitle {
+    margin-top: 250px;
+}
+
+.foodtitle {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.abouttitle,
+.caketitle {
+    display: flex;
+    justify-content: center;
+}
+
+.drink_ul,
+.food_ul {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.drink_ul {
+    margin-top: -200px;
+}
+
+.drink_ul li,
+.food_ul li {
+    width: 270px;
+    height: 270px;
+    margin-bottom: 20px;
+}
+
+.drink_ul li img,
+.food_ul li img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    margin-bottom: -20px;
+}
+
+.drink_ul li p,
+.food_ul li p {
+    text-align: center;
+}
+
+.drink_ul li a,
+.food_ul li a {
+    text-decoration: none;
+    color: #000;
+}
+
+.food_ul li p {
+    margin: -30px 0;
+}
+
+.centered {
+    display: flex;
+}
+
+.centered img {
+    padding-left: 5px;
+}
+
+.timeline-item img {
+    border-radius: 10px;
+}
+
+#area0 {
+    width: 100%;
+    height: 1px;
+}
+
+.footer {
+    width: 100%;
+    margin-top: 20px;
+    background-color: #EAE4DB;
+}
+
+.drink_ul img:hover,
+.food_ul img:hover {
+    transform: scale(1.2, 1.2);
+}
+
+.footer_box {
+    width: 80%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.footer_logo {
+    width: 30%;
+    overflow: hidden;
+}
+
+.footer_img_box {
+    width: 200px;
+    height: 200px;
+    float: right;
+}
+
+.footer_logo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    margin-top: 5px;
+}
+
+.footer_content {
+    width: 30%;
+    margin: 0 auto;
+    overflow: hidden;
+    text-align: justify;
+    margin: 0 5%;
+}
+
+.footer_content2 {
+    width: 30%;
+    margin: 0 auto;
+    overflow: hidden;
+    text-align: justify;
+}
+
+.footer p {
+    font-size: 14px;
+    line-height: 26px;
+}
+
+.header.active {
+    transform: translateY(-200px);
+    opacity: 0;
+}
+
+.top_box {
+    width: 150px;
+    height: 150px;
+}
+
+.top_box img {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+#goTop {
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+}
+
+.menu_ul img {
+    margin: -60px -60px 0 0;
+    opacity: 0;
+}
+
+.menu_ul li:hover img {
+    transition: all .5s;
+    opacity: 1;
+}
+
+hr {
+    background-color: #ccc;
+    margin-top: 50px;
+}
+
+.map {
+    width: 100%;
+}
+
+.map_p {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding-bottom: 20px;
+}
+
+.map_img {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+h2 {
+    color: #085D35;
+    font-weight: bold;
+}
+
+.new {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.drinktitle {
+    margin-top: 350px;
+}
+
+
+/*----------------------------RWD-----------------------------*/
+
+@media screen and (max-width:768px) {
+    .header {
+        margin-top: -200px;
+        height: 150px;
+    }
+    .wrapper {
+        margin-top: 200px;
+    }
+    .header_box {
+        max-width: 768px;
+        max-height: 200px;
+        margin: 0 auto;
+        position: relative;
+        top: 30px;
+    }
+    .header_box>img {
+        width: 0;
+        height: 0;
+    }
+    .logo {
+        width: 100px;
+        height: 100px;
+        position: absolute;
+        left: 50%;
+        margin: 0px -50px;
+    }
+    .logo_box {
+        width: 0px;
+        height: 0px;
+    }
+    .logo_box:hover .logo {
+        transform: rotateY(0deg);
+    }
+    .menu_ul {
+        display: none;
+    }
+    .menu_page {
+        display: block;
+        margin-top: 80px;
+        opacity: 0;
+        max-height: 0;
+        overflow: hidden;
+    }
+    .menu_page li a {
+        color: #085D35;
+        font-weight: bold;
+    }
+    .menu_page li a:active {
+        border-bottom: 2px solid #085D35;
+    }
+    .bar_box {
+        width: 100%;
+        float: left;
+        display: block;
+        cursor: pointer;
+    }
+    .active .bar1 {
+        transform: rotate(-45deg) translate(-9px, 7px);
+    }
+
+    .active .bar2 {
+        opacity: 0;
+    }
+
+    .active .bar3 {
+        transform: rotate(45deg) translate(-9px, -8px);
+    }
+    .bar {
+        width: 36px;
+        height: 6px;
+        background: #085D35;
+        margin: 6px 10px;
+        border-radius: 3px;
+    }
+    .bar_box.active ul {
+        opacity: 1;
+        max-height: 1000px;
+    }
+    .drink_ul li,
+    .food_ul li {
+        width: 220px;
+        height: 220px;
+    }
+    .drink,
+    .food {
+        max-width: 768px;
+        margin-top: 230px;
+    }
+    .drinktitle,
+    .foodtitle,
+    .abouttitle,
+    .caketitle {
+        max-width: 768px;
+        display: flex;
+        justify-content: center;
+    }
+    .drink_ul li p {
+        margin: -5px 0;
+    }
+    .food_ul li p {
+        margin: -25px 5px;
+    }
+    .footer_logo {
+        width: 50%;
+    }
+    .footer_content {
+        display: none;
+    }
+    .footer_content2 {
+        width: 50%;
+    }
+    .top_box {
+        width: 90px;
+        height: 90px;
+    }
+    figure.snip1104 {
+        min-width: 220px;
+        max-width: 220px;
+        max-height: 300px;
+    }
+}
+</style>
+
+<body>
+    <div class="header transition bg">
+        <div class="header_box"><img src="./images/title.png" alt="">
+            <div class="logo_box">
+                <div class="logo transition" id="logo">
+                    <img src="./images/logo.png" alt="logo">
+                    <img class="back" src="./images/logo2.png" alt="logo2">
+                </div>
+                <!-- logo -->
+            </div>
+            <!-- logo_box -->
+            <nav class="menu">
+                <ul class="menu_ul">
+                    <li><a href="#area1"><img src="images/coffee.png" alt="">貓圖飲品</a></li>
+                    <li><a href="#area2"><img src="images/sandwich.png" alt="">店內餐點</a></li>
+                    <li><a href="#area3"><img src="images/cake.png" alt="">貓圖甜點</a></li>
+                    <li><a href="#area4"><img src="images/cat.png" alt="">關於貓圖</a></li>
+                </ul>
+                <div class="bar_box">
+                    <div class="bar bar1 transition"></div>
+                    <div class="bar bar2 transition"></div>
+                    <div class="bar bar3 transition"></div>
+                    <ul class="menu_page">
+                        <li><a href="#area1">貓圖飲品</a></li>
+                        <li><a href="#area2">店內餐點</a></li>
+                        <li><a href="#area3">貓圖甜點</a></li>
+                        <li><a href="#area4">關於貓圖</a></li>
+                    </ul>
+                </div>
+                <!-- bar_box -->
+            </nav>
+        </div>
+        <!-- header_box -->
+    </div>
+    <!-- header -->
+    <div class="wrapper">
+        <div class="slider_box">
+            <ul class="slides"></ul>
+            <ul class="page"></ul>
+            <div class="dir_wrap dir_left" id="dir_left"><span class="oi" data-glyph="chevron-left" title="" aria-hidden="true"></span></div>
+            <div class="dir_wrap dir_right" id="dir_right"><span class="oi" data-glyph="chevron-right" title="" aria-hidden="true"></span></div>
+        </div>
+        <div class="container">
+            <div id="area0"></div>
+            <div class="drinktitle" id="area1">
+                <img src="./images/drinktitle.png" alt="貓圖飲品"></div>
+            <hr>
+            <div class="new">
+                <figure class="snip1104 red">
+                    <img src="images/n1.png">
+                    <figcaption>
+                        <h2>Aug<br><span> Limited<p>莓果柳橙星空<br>$100</p></span></h2>
+                    </figcaption>
+                </figure>
+                <figure class="snip1104 blue">
+                    <img src="images/n2.png">
+                    <figcaption>
+                        <h2>Sep<br>  <span> Limited<p>莓果優格奶昔<br>$150</p></span></h2>
+                    </figcaption>
+                </figure>
+                <figure class="snip1104">
+                    <img src="images/n3.png">
+                    <figcaption>
+                        <h2>Oct<br> <span> Limited<p>香蕉巧克奶昔<br>$140</p></span></h2>
+                    </figcaption>
+                </figure>
+            </div>
+            <hr>
+            <!-- new -->
+            <div id="area0"></div>
+            <div class="drink">
+                <ul class="drink_ul">
+                    <li><img class="transition" src="./images/d1.png" alt="">
+                        <p>冰咖啡
+                            <br>Iced Coffee
+                            <br>$60</p>
+                    </li>
+                    <li><img class="transition" src="./images/d2.png" alt="">
+                        <p>冰卡布奇諾咖啡
+                            <br>Iced Cappuccino
+                            <br>$75</p>
+                    </li>
+                    <li><img class="transition" src="./images/d3.png" alt="">
+                        <p>漂浮冰咖啡
+                            <br>Ice cream Coffee
+                            <br>$75</p>
+                    </li>
+                    <li><img class="transition" src="./images/d4.png" alt="">
+                        <p>冰摩卡咖啡
+                            <br>Iced Cafe' Mocha
+                            <br>$75</p>
+                    </li>
+                    <li><img class="transition" src="./images/d5.png" alt="">
+                        <p>冰焦糖瑪奇朵
+                            <br>Iced Caramel Macchiato
+                            <br>$85</p>
+                    </li>
+                    <li><img class="transition" src="./images/d6.png" alt="">
+                        <p>冰清綠茶
+                            <br>Oolong
+                            <br>$60</p>
+                    </li>
+                    <li><img class="transition" src="./images/d7.png" alt="">
+                        <p>冰拿堤咖啡
+                            <br>Iced Cafe' Latte
+                            <br>$75</p>
+                    </li>
+                    <li><img class="transition" src="./images/d8.png" alt="">
+                        <p>冰抹茶拿堤
+                            <br>Iced Matcha Latte
+                            <br>$75</p>
+                    </li>
+                </ul>
+                <!-- drink_ul -->
+            </div>
+            <!-- drink -->
+            <div id="area0"></div>
+            <hr>
+            <div class="food" id="area2">
+                <div class="foodtitle"><img src="./images/foodtitle.png" alt="店內餐點"></div>
+                <hr>
+                <ul class="food_ul">
+                    <li><img class="transition" src="./images/f1.png" alt="">
+                        <p>丹麥可頌
+                            <br>Danish Croissant
+                            <br>$65</p>
+                        </a>
+                    </li>
+                    <li><img class="transition" src="./images/f2.png" alt="">
+                        <p>起司牛肉可頌
+                            <br>Cheese and Beef Croissant
+                            <br>$100</p>
+                        </a>
+                    </li>
+                    <li><img class="transition" src="./images/f3.png" alt="">
+                        <p>火腿蛋沙拉可頌
+                            <br>Ham and Egg Salad Croissant
+                            <br>$100</p>
+                        </a>
+                    </li>
+                    <li><img class="transition" src="./images/f4.png" alt="">
+                        <p>鮮蔬軟法堡
+                            <br>Soft France bread with Vegetable
+                            <br>$85</p>
+                        </a>
+                    </li>
+                    <li><img class="transition" src="./images/f5.png" alt="">
+                        <p>花生火腿蛋三明治
+                            <br>Ham and Egg Sandwich with Peanut Butter
+                            <br>$80</p>
+                        </a>
+                    </li>
+                    <li><img class="transition" src="./images/f6.png" alt="">
+                        <p>鮪魚鮮蔬三明治
+                            <br>Tuna & Vegetable Sandwich
+                            <br>$65</p>
+                        </a>
+                    </li>
+                    <li><img class="transition" src="./images/f7.png" alt="">
+                        <p>蛋沙拉火腿三明治
+                            <br>Ham and Egg Salad Sandwich
+                            <br>$70</p>
+                        </a>
+                    </li>
+                    <li><img class="transition" src="./images/f8.png" alt="">
+                        <p>元氣燻雞三明治
+                            <br>Smoked Chicken Sandwich
+                            <br>$75</p>
+                        </a>
+                    </li>
+                </ul>
+                <!-- food_ul -->
+            </div>
+            <!-- food -->
+            <div id="area3"></div>
+            <hr>
+            <div class="cake">
+                <div class="caketitle"><img src="images/caketitle.png" alt=""></div>
+                <div class="cake_box">
+                    <div id="carousel">
+                        <li><a href="img_lightbox/caa1.png" rel="lightbox[roadtrip]"><img src="images/ca1.png" alt=""></a></li>
+                        <li><a href="img_lightbox/caa2.png" rel="lightbox[roadtrip]"><img src="images/ca2.png" alt=""></a></li>
+                        <li><a href="img_lightbox/caa3.png" rel="lightbox[roadtrip]"><img src="images/ca3.png" alt=""></a></li>
+                        <li><a href="img_lightbox/caa4.png" rel="lightbox[roadtrip]"><img src="images/ca4.png" alt=""></a></li>
+                        <li><a href="img_lightbox/caa5.png" rel="lightbox[roadtrip]"><img src="images/ca5.png" alt=""></a></li>
+                        <li><a href="img_lightbox/caa6.png" rel="lightbox[roadtrip]"><img src="images/ca6.png" alt=""></a></li>
+                        <li><a href="img_lightbox/caa7.png" rel="lightbox[roadtrip]"><img src="images/ca7.png" alt=""></a></li>
+                        <li><a href="img_lightbox/caa8.png" rel="lightbox[roadtrip]"><img src="images/ca8.png" alt=""></a></li>
+                        <li><a href="img_lightbox/caa9.png" rel="lightbox[roadtrip]"><img src="images/ca9.png" alt=""></a></li>
+                    </div>
+                    <!-- carousel -->
+                </div>
+                <!-- cake_box -->
+            </div>
+            <!-- cake -->
+            <div id="area0"></div>
+            <div class="about" id="area4">
+                <hr>
+                <div class="abouttitle"><img src="./images/about.png" alt="關於貓圖"></div>
+                <div class="timeline">
+                    <h2>2012</h2>
+                    <ul class="timeline-items">
+                        <li class="is-hidden timeline-item">
+                            <h3>2012-貓圖誕生</h3>
+                            <hr>
+                            <img src="./images/2012.jpg" alt="貓圖誕生">
+                            <p>貓，俏皮的模樣總是讓人會心一笑
+                                <br>咖啡，濃郁香氣帶來放鬆與寧靜
+                                <br>在鬧中取靜的一隅，「猫圖珈啡，CAT.jpg cafe」誕生</p>
+                            <hr>
+                            <p>May 2012</p>
+                        </li>
+                    </ul>
+                    <h2>2016</h2>
+                    <ul class="timeline-items">
+                        <li class="is-hidden timeline-item inverted">
+                            <h3>2016貓圖新家</h3>
+                            <hr>
+                            <img src="./images/2016.png" alt="2016">
+                            <p>窩在小坪數的店，溫暖了4年
+                                <br>終於有能力給貓咪們更好的家</p>
+                            <hr>
+                            <p>December 2016</p>
+                        </li>
+                        <li class="is-hidden timeline-item centered">
+                            <h3>顧客們與貓</h3>
+                            <hr>
+                            <img src="./images/C1.JPG" alt="">
+                            <img src="./images/C4.JPG" alt="">
+                            <img src="./images/C2.JPG" alt="">
+                            <img src="./images/C3.JPG" alt="">
+                            <img src="./images/C5.JPG" alt="">
+                            <hr>
+                            <p>Memory</p>
+                        </li>
+                    </ul>
+                    <h2>2017</h2>
+                    <ul class="timeline-items">
+                        <li class="is-hidden timeline-item">
+                            <h3>孟母三遷的貓圖</h3>
+                            <hr>
+                            <img src="./images/2017.JPG" alt="">
+                            <p>5年內累積了不少熟客，但也因為種種原因
+                                <br>讓我們一搬在搬
+                                <br>這次終於找到了一個好地點
+                                <br>盼望各位喜愛貓圖的客人快回窩囉!!</p>
+                            <hr>
+                            <p></p>
+                        </li>
+                        <li class="is-hidden timeline-item inverted">
+                            <h3>潮州街154號</h3>
+                            <hr>
+                            <img src="./images/2017cat.JPG" alt="">
+                            <p></p>
+                            <hr>
+                            <p>貓圖珈琲</p>
+                        </li>
+                    </ul>
+                </div>
+                <!-- timeline -->
+            </div>
+            <hr>
+            <!-- about -->
+            <div class="map">
+                <div class="map_p">
+                    <h2>貓圖珈琲 Cat.jpg</h2></div>
+                <div class="map_img">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3615.1670965539643!2d121.52675671500614!3d25.0284027839749!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3442a985cbbb2e59%3A0xca173f8b2e761d75!2z6LKT5ZyW5ZKW5ZWhIENBVC4ganBnIGNhZmU!5e0!3m2!1szh-TW!2stw!4v1504106961553" width="500" height="300" frameborder="0" style="border:2px solid #000;" allowfullscreen></iframe>
+                </div>
+            </div>
+            <!-- map -->
+        </div>
+        <!-- container -->
+    </div>
+    <!-- slider -->
+    </div>
+    <!-- wrapper -->
+    <div class="footer">
+        <div class="top_box" id="goTop"><a><img src="images/top.png" alt="top"></a></div>
+        <div class="footer_box">
+            <div class="footer_logo">
+                <div class="footer_img_box"><img src="images/footer2.png" alt=""></div>
+            </div>
+            <!-- footer_logo -->
+            <div class="footer_content">
+                <p>我們深知一杯美味咖啡的各項環節與要素。 所以選擇在店內精準演繹整個Bean-to-Cup 流程。手工挑豆、得宜烘焙、即時研磨、專業吧台技術…從一顆生豆到一杯咖啡，最透明的製作流程，提供最真誠的賞味體驗。</p>
+            </div>
+            <div class="footer_content2">
+                <p>貓圖電話：(02)3365-2865
+                    <br>貓圖地址：台北市大安區潮州街154號
+                    <br>E-mail： catjpg@catcafe.com </p>
+            </div>
+        </div>
+        <!-- footer_box -->
+    </div>
+    <!-- footer -->
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+    <script>
+    $("figure").mouseleave(
+        function() {
+            $(this).removeClass("hover");
+        }
+    );
+
+    var lastScroll = 0;
+    $(window).scroll(function() {
+        var scrollTop = $(this).scrollTop();
+        if (scrollTop <= 200) {
+            $(".header").removeClass("active");
+        } else {
+            if (scrollTop > lastScroll) {
+                $(".header").addClass("active");
+            } else {
+                $(".header").removeClass("active");
+            }
+        }
+        lastScroll = scrollTop;
+    });
+
+    $(".bar_box").click(function() {
+        $(this).toggleClass("active");
+    });
+
+    var num = 0;
+    var slideswidth = 1250;
+    var sliders = ["0.png", "1.png", "2.png"];
+    var slideCount = sliders.length;
+
+    $(".slides").width(slideswidth * slideCount);
+
+    for (i = 0; i < slideCount; i++) {
+        $(".slides").append("<li><img src='images/" + sliders[i] + "' alt=''></li>");
+        $(".page").append("<li btn=" + i + "></li>");
+    }
+    setwidth()
+
+    $(".page").on("click", "li", function() {
+        num = parseInt($(this).attr("btn"))
+        goSlide(num);
+    });
+    $("#dir_left").click(function() {
+        if (num > 0) {
+            num = num - 1;
+        }
+        goSlide(num);
+    });
+    $("#dir_right").click(function() {
+        if (num < (slideCount - 1)) {
+            num = num + 1;
+        }
+        goSlide(num);
+    });
+
+    $(window).resize(function() {
+        setwidth()
+    });
+
+    function setwidth() {
+        var width = $(window).width()
+        if (width <= 1250) {
+            slideswidth = width;
+        } else {
+            slideswidth = 1250;
+        }
+
+        $(".slides").width(slideswidth * slideCount)
+        $(".slides li, .slider_box").width(slideswidth)
+        goSlide(num)
+    }
+
+    function goSlide(num) {
+        $(".page li").eq(num).addClass("active")
+            .siblings().removeClass("active");
+        $(".slides").css("left", 0 - slideswidth * num + "px");
+    }
+    $(".page li").eq(0).addClass('active');
+
+    $("#goTop").click(function() {
+        $("body").animate({
+            scrollTop: 0
+        }, 700);
+    });
+    $("#logo").click(function() {
+        $("body").animate({
+            scrollTop: 0
+        }, 700);
+    });
+    </script>
+    <script src="js/jquery-1.7.2.min.js"></script>
+    <!-- 光箱 -->
+    <script src="js/lightbox.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>
+    <!-- 視差捲動 -->
+    <script src="jquery.scrollTo-1.4.2/jquery.scrollTo-min.js"></script>
+    <script src="jquery.scrollTo-1.4.2/script.js"></script>
+    <script src="js/jquery.timelify.js"></script>
+    <!-- 年份視差 -->
+    <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-36251023-1']);
+    _gaq.push(['_setDomainName', 'jqueryscript.net']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+        var ga = document.createElement('script');
+        ga.type = 'text/javascript';
+        ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0];
+        s.parentNode.insertBefore(ga, s);
+    })();
+
+    $('.timeline').timelify({
+        animLeft: "zoomInLeft",
+        animCenter: "rubberBand",
+        animRight: "lightSpeedIn",
+        animSpeed: 600,
+        offset: 150
+    });
+    </script>
+</body>
+
+</html>
